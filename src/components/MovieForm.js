@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
 const MovieForm = ({ addToMovieList, setDisplay }) => {
-
   const [error, setError] = useState(false);
   const [movieList, setMovieList] = useState({
     name: "",
     rating: "",
     duration: "",
   });
-   
+
   const handleChange = (e) => {
     setError(false);
     const { name, value } = e.target;
@@ -22,7 +21,7 @@ const MovieForm = ({ addToMovieList, setDisplay }) => {
 
   const handleSubmit = () => {
     const res = movieList.duration.match(/^([0-9]+[.])*[0-9]+[mh]$/);
-    if (!res) {
+    if (res) {
       setError(true);
     } else {
       var durStr = movieList.duration;
@@ -65,7 +64,7 @@ const MovieForm = ({ addToMovieList, setDisplay }) => {
             <input
               type="number"
               className="form-control my-3"
-               name="rating"
+              name="rating"
               placeholder="Enter movie rating"
               value={movieList.rating}
               onChange={handleChange}
